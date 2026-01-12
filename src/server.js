@@ -5,6 +5,9 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.HOST || '0.0.0.0';
+
 const fastify = Fastify({
   logger: true
 });
@@ -18,7 +21,7 @@ await fastify.register(fastifyStatic, {
 // Start server
 const start = async () => {
   try {
-    await fastify.listen({ port: 3000, host: '0.0.0.0' });
+    await fastify.listen({ port: PORT, host: HOST });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
